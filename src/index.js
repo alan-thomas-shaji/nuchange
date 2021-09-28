@@ -1,17 +1,61 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDom from 'react-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import './style.css';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+function MyApp(){                                                //component
+  return (
+    <div className = "productList">
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+      <Product />
+    </div>
+  );
+}
+
+const name = 'Product name here';
+const vendor = 'Vendor name here';
+const price = '$69.420';
+
+
+const Product = () => {
+  return <section className = "product">
+    <Image />
+    <ProductName />
+    <VendorName />
+    <Price />
+  </section>
+}
+
+const Image = () => {
+  return <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/best-product-3102470-2583790.png" alt="" />
+}
+
+const ProductName = () => {
+  return <h3>
+    {name}
+  </h3>
+}
+
+const VendorName = () => {
+  return <h5>
+    {vendor}
+  </h5>
+}
+
+const Price = () => {
+  return <div className = "price">
+    <h4>
+    {price}
+  </h4>
+  </div>
+}
+
+ReactDom.render(<MyApp />,document.getElementById('root'));
