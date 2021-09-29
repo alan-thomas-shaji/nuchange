@@ -3,25 +3,31 @@ import ReactDom from 'react-dom';
 
 import './style.css';
 
-var jsonText =
-    '[{ "name":"Potato", "id":1, "price":30, "available":1, "vendor":"Himachal Pvt Ltd", "category":"Vegetables" }, { "name":"Banana", "id":2, "price":50, "available":1,"category": "Fruits","vendor": "Organic farms"}, { "name":"Drumsticks", "id":3, "price":20, "available":0, "category":"Vegetables", "vendor":"Mallikarjuna farms"}, { "name":"Orange", "id":4, "price":25, "available":1, "vendor":"Nagpur farms", "category":"Fruits"}]';
-var products = JSON.parse(jsonText);
 
-
-function MyApp(){                                                //component
+function MyApp(){                                                
   return (
-    <div className = "productList">
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-      <Product name = "Product Name" vendor = "Vendor name here" price = {69.420}/>
-    </div>
+    <ProductList />
   );
+}
+
+
+
+//<Product name = "Product Name" vendor = "Vendor name here" price = {69.420} availability = {2}/>
+
+function ProductList(props) {
+  var jsonText =
+    '[{ "name":"Potato", "id":1, "price":30, "available":1, "vendor":"Himachal Pvt Ltd", "category":"Vegetables" }, { "name":"Banana", "id":2, "price":50, "available":1,"category": "Fruits","vendor": "Organic farms"}, { "name":"Drumsticks", "id":3, "price":20, "available":0, "category":"Vegetables", "vendor":"Mallikarjuna farms"}, { "name":"Orange", "id":4, "price":25, "available":1, "vendor":"Nagpur farms", "category":"Fruits"}]';
+  var products = JSON.parse(jsonText);
+  const item = products.map((product) => (
+    <Product
+      name={product.name.toString()}
+      vendor={product.vendor}
+      availability={product.available === 1 ? true : false}
+      price={product.price}
+    />
+  ));
+
+  return <div className="productList">{item}</div>;
 }
 
 
@@ -31,6 +37,7 @@ const Product = (props) => {
     <Image />
     <ProductName  name = {props.name}/>
     <VendorName vendor = {props.vendor}/>
+    <Availability availability = {props.availability}/>
     <Price price = {props.price}/>
   </section>
 }
@@ -49,6 +56,12 @@ const VendorName = (props) => {
   return <h5>
     {props.vendor}
   </h5>
+}
+
+const Availability = (props) => {
+  return <h4>
+    Stock : {props.availability}
+  </h4>
 }
 
 const Price = (props) => {
