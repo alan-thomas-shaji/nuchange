@@ -6,15 +6,24 @@ import './style.css';
 
 function MyApp(){                                                
   return (
-    <ProductList />
+    <section>
+      <TopBar />
+      <ProductList />
+    </section>
   );
 }
 
-
+function TopBar() {
+  return <div className = "top-bar">
+    <h1>
+      Couldn't make a proper nav bar in time so...
+    </h1>
+  </div>
+} 
 
 //<Product name = "Product Name" vendor = "Vendor name here" price = {69.420} availability = {2}/>
 
-function ProductList(props) {
+function ProductList() {
   var jsonText =
     '[{ "name":"Potato", "id":1, "price":30, "available":1, "vendor":"Himachal Pvt Ltd", "category":"Vegetables" }, { "name":"Banana", "id":2, "price":50, "available":1,"category": "Fruits","vendor": "Organic farms"}, { "name":"Drumsticks", "id":3, "price":20, "available":0, "category":"Vegetables", "vendor":"Mallikarjuna farms"}, { "name":"Orange", "id":4, "price":25, "available":1, "vendor":"Nagpur farms", "category":"Fruits"}]';
   var products = JSON.parse(jsonText);
@@ -22,7 +31,7 @@ function ProductList(props) {
     <Product
       name={product.name.toString()}
       vendor={product.vendor}
-      availability={product.available === 1 ? true : false}
+      availability={product.available >= 1 ? product.available : "Not in Stock"}
       price={product.price}
     />
   ));
@@ -60,7 +69,7 @@ const VendorName = (props) => {
 
 const Availability = (props) => {
   return <h4>
-    Stock : {props.availability}
+    Stock: {props.availability}
   </h4>
 }
 

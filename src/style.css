@@ -38,3 +38,15 @@ h5 {
     color: rgb(97, 95, 228);
     letter-spacing: 2px;
 }
+
+.top-bar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: aqua;
+}
+
+.top-bar h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 4rem;
+    padding: 2rem auto;
+}
